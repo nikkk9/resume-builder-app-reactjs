@@ -1,0 +1,71 @@
+.editor {
+  max-width: 50rem;
+  min-height: 30rem;
+  margin: 2rem auto;
+  border: 1px solid gray;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  overflow-x: scroll;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.container::-webkit-scrollbar {
+  height: 0.05rem;
+}
+
+.container .section {
+  padding: 1rem;
+  border-bottom: 2px solid transparent;
+  font-weight: 500;
+  font-size: 1rem;
+  color: gray;
+  white-space: nowrap;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.container .active {
+  border-bottom: 2px solid rgb(9, 134, 206);
+  color: rgb(9, 134, 206);
+}
+.body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.detail .row {
+  display: flex;
+  gap: 2rem;
+}
+.detail .row > div {
+  flex: 1;
+}
+.detail .column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+}
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: lightgray;
+  color: crimson;
+  padding: 0.5rem;
+  border-radius: 2rem;
+}

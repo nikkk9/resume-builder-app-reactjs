@@ -1,0 +1,15 @@
+.inputCtrl {
+  display: flex;
+  flex-direction: column;
+}
+.inputCtrl label {
+  color: rgb(59, 59, 59);
+  margin-bottom: 0.5rem;
+}
+.inputCtrl input {
+  padding: 0.8rem;
+  border-radius: 0.2rem;
+  outline: none;
+  border: 1px solid gray;
+  font-size: 1rem;
+}

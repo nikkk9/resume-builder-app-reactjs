@@ -1,0 +1,36 @@
+.body h2 {
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 2rem;
+  color: rgb(45, 45, 45);
+}
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+}
+.colors {
+  display: flex;
+  padding: 0.2rem;
+  gap: 2rem;
+}
+.colors .color {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+}
+.toolbar button {
+  padding: 0.7rem 1rem;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(0, 60, 255);
+  color: rgb(40, 40, 40);
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.toolbar button svg {
+  color: rgb(0, 60, 255);
+}
