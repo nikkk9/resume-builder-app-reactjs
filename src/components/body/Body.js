@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cls from "./Body.module.css";
 import { AiOutlineCloudDownload } from "react-icons/ai";
 import Editor from "../editor/Editor";
@@ -53,6 +53,11 @@ const Body = () => {
       detail: "",
     },
   });
+
+  useEffect(() => {
+    console.log(resumeInfo);
+  }, [resumeInfo]);
+
   return (
     <div className={cls.body}>
       <h2>Resume Builder</h2>
@@ -73,7 +78,7 @@ const Body = () => {
         </button>
       </div>
       <div className={cls.main}>
-        <Editor sec={sections} info={resumeInfo} />
+        <Editor sec={sections} info={resumeInfo} setResumeInf={setResumeInfo} />
       </div>
     </div>
   );
