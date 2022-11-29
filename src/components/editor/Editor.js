@@ -513,6 +513,66 @@ const Editor = ({ sec, info, setResumeInf }) => {
       }
     }
   };
+
+  const addNewHandle = () => {
+    const details = activeInfo?.details;
+    if (!details) return;
+    const lastDetail = details.slice(-1)[0];
+    if (!Object.keys(lastDetail).length) return;
+    details?.push({});
+
+    setResumeInf((prev) => ({
+      ...prev,
+      [sec[activeSec]]: {
+        ...info[sec[activeSec]],
+        details: details,
+      },
+    }));
+    setActiveDetailIdx(details?.length - 1);
+  };
+
+  const deleteChipHandle = (index) => {
+    const details = activeInfo?.details ? [...activeInfo?.details] : "";
+    if (!details) return;
+    details.splice(index, 1);
+    setResumeInf((prev) => ({
+      ...prev,
+      [sec[activeSec]]: {
+        ...info[sec[activeSec]],
+        details: details,
+      },
+    }));
+
+    setActiveDetailIdx((prev) => (prev === index ? 0 : prev - 1));
+  };
+
+  // changing fields data when you go for add new
+  useEffect(() => {
+    const details = activeInfo?.details;
+    if (!details) return;
+
+    const activeInf = info[sec[activeSec]];
+    setValues({
+      overview: activeInf.details[activeDetailIdx]?.overview || "",
+      link: activeInf.details[activeDetailIdx]?.link || "",
+      certificationLink:
+        activeInf.details[activeDetailIdx]?.certificationLink || "",
+      companyName: activeInf.details[activeDetailIdx]?.companyName || "",
+      location: activeInf.details[activeDetailIdx]?.location || "",
+      startDate: activeInf.details[activeDetailIdx]?.startDate || "",
+      endDate: activeInf.details[activeDetailIdx]?.endDate || "",
+      points: activeInf.details[activeDetailIdx]?.points || "",
+      title: activeInf.details[activeDetailIdx]?.title || "",
+      linkedin: activeInf.details[activeDetailIdx]?.linkedin || "",
+      github: activeInf.details[activeDetailIdx]?.github || "",
+      college: activeInf.details[activeDetailIdx]?.college || "",
+    });
+  }, [activeDetailIdx]);
+
+  useEffect(() => {
+    setActiveInfo(info[sec[activeSec]]);
+  }, [info]);
+
   return (
     <div className={cls.editor}>
       <div className={cls.container}>
@@ -551,10 +611,22 @@ const Editor = ({ sec, info, setResumeInf }) => {
                     {sec[activeSec]}
                     {idx + 1}
                   </p>
-                  <span>X</span>
+                  <span
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      deleteChipHandle(idx);
+                    }}
+                  >
+                    X
+                  </span>
                 </div>
               );
             })}
+          {activeInfo?.details && activeInfo?.details.length > 0 && (
+            <div className={cls.new} onClick={addNewHandle}>
+              +New
+            </div>
+          )}
         </div>
         {generateBody()}
 

@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import cls from "./Body.module.css";
 import { AiOutlineCloudDownload } from "react-icons/ai";
 import Editor from "../editor/Editor";
+import Resume from "../Resume/Resume";
+import ReactToPrint from "react-to-print";
 
 const Body = () => {
-  const colors = ["#239ce2", "#48bb78", "#0bc5ea", "#a0aec0", "#ed8936"];
+  const colors = ["#3c6aff", "#003e59", "crimson", "teal"];
+  const [activeColor, setActiveColor] = useState(colors[0]);
+
+  const rsmRef = useRef();
 
   const sections = {
     basicInfo: "Basic Info",
@@ -54,13 +59,13 @@ const Body = () => {
     },
   });
 
-  useEffect(() => {
-    console.log(resumeInfo);
-  }, [resumeInfo]);
+  // useEffect(() => {
+  //   console.log(resumeInfo);
+  // }, [resumeInfo]);
 
   return (
     <div className={cls.body}>
-      <h2>Resume Builder</h2>
+      <h1>Create Resume</h1>
       <div className={cls.toolbar}>
         <div className={cls.colors}>
           {colors.map((i) => {
@@ -68,17 +73,32 @@ const Body = () => {
               <span
                 key={i}
                 style={{ backgroundColor: i }}
-                className={cls.color}
+                className={`${cls.color} ${activeColor === i && cls.active}`}
+                onClick={() => setActiveColor(i)}
               />
             );
           })}
         </div>
-        <button>
-          Download <AiOutlineCloudDownload />
-        </button>
+        <ReactToPrint
+          trigger={() => {
+            return (
+              <button>
+                Download <AiOutlineCloudDownload />
+              </button>
+            );
+          }}
+          content={() => rsmRef.current}
+        />
       </div>
       <div className={cls.main}>
         <Editor sec={sections} info={resumeInfo} setResumeInf={setResumeInfo} />
+        <h1>Your Resume</h1>
+        <Resume
+          info={resumeInfo}
+          sec={sections}
+          activeClr={activeColor}
+          rsmRef={rsmRef}
+        />
       </div>
     </div>
   );

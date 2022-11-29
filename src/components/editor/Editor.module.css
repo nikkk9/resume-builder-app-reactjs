@@ -64,11 +64,24 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: lightgray;
-  color: crimson;
+  background-color: gray;
+  color: aliceblue;
   padding: 0.5rem;
   border-radius: 2rem;
   cursor: pointer;
+}
+.chips .active {
+  background-color: rgb(33, 101, 237);
+  color: aliceblue;
+}
+.chips .new {
+  color: blue;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+.new:active {
+  transform: translateY(0.2rem);
 }
 .body button {
   background-color: rgb(0, 60, 255);
